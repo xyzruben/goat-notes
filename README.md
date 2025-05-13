@@ -1,40 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GOAT Notes 🐐📝
 
-## Getting Started
+GOAT Notes is a modern, full-stack AI-powered note-taking app built from scratch using industry-standard tools. Designed as a production-ready portfolio project, it showcases authentication, database modeling, and clean UI design — all powered by scalable cloud technologies.
 
-First, run the development server:
+This project reflects my commitment to becoming a professional, with a strong focus on backend logic, authentication, and modern frontend architecture.
+
+---
+
+## ✨ Features
+
+- 🔐 User authentication with Supabase
+- 📦 PostgreSQL database using Prisma ORM
+- 🧠 OpenAI-powered note interaction (coming soon)
+- 🗂️ Relational schema (`User`, `Note`)
+- 📁 Full CRUD for notes (secure and user-scoped)
+- 💅 Modern UI with Tailwind CSS and shadcn/ui
+- ⚙️ Type-safe development with TypeScript
+- ☁️ Deployed on Vercel (coming soon)
+
+---
+
+## 🧰 Tech Stack
+
+| Tool         | Purpose                            |
+|--------------|------------------------------------|
+| **Next.js 15**   | React framework (App Router)       |
+| **TypeScript**   | Type-safe JavaScript              |
+| **Supabase**     | Auth + PostgreSQL database        |
+| **Prisma ORM**   | Schema modeling + migrations      |
+| **Tailwind CSS** | Utility-first styling             |
+| **shadcn/ui**    | Reusable, modern UI components    |
+| **OpenAI API**   | AI-powered features (in progress) |
+| **pnpm**         | Package manager                   |
+| **Vercel**       | Deployment (coming soon)          |
+
+---
+
+## 🔒 Authentication
+
+Supabase handles secure user signup, login, and session management. Prisma enforces row-level access so users can only read/write their own notes.
+
+---
+
+## 🧠 AI Integration (In Progress)
+
+I'm integrating the OpenAI API to let users interact with their notes using natural language — enabling summarization, extraction, or even rewriting.
+
+---
+
+## 💻 Local Setup
+
+Clone the repo and install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone git@github.com:xyzruben/goat-notes.git
+cd goat-notes
+pnpm install
 pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-# GOAT Notes
-
-// TODO: Connect to Supabase
