@@ -4,25 +4,26 @@ import {
     SidebarContent,
     SidebarGroup,
     SidebarGroupLabel,
-  } from "@/components/ui/sidebar"
+  } from "@/components/ui/sidebar";
 import { prisma } from "@/db/prisma";
 import { Note } from "@prisma/client";
 import Link from "next/link";
+import SidebarGroupContent from "./SidebarGroupContent";
   
   async function AppSidebar() {
-    const user = await getUser()
+    const user = await getUser();
 
     let notes: Note[] = [];
 
     if (user) {
-        await prisma.note.findMany({
+        notes = await prisma.note.findMany({
             where: {
                 authorId: user.id,
             },
             orderBy: {
                 updatedAt: "desc",
-            }
-        })
+            },
+        });
     }
 
 
@@ -41,7 +42,7 @@ import Link from "next/link";
                         </p>
                     )}
                 </SidebarGroupLabel>
-                {user && <SidebarGroupContent notes={notes}/>}
+                {user && <SidebarGroupContent notes={notes} />}
             </SidebarGroup>
         </SidebarContent>
       </Sidebar>
