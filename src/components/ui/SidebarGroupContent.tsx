@@ -1,11 +1,13 @@
 "use client";
 
 import { Note } from "@prisma/client";
-import { SidebarGroupContent as SidebarGroupContentShadCN, SidebarMenu } from "./sidebar";
+import { SidebarGroupContent as SidebarGroupContentShadCN, SidebarMenu, SidebarMenuItem } from "./sidebar";
 import { SearchIcon } from "lucide-react";
 import { Input } from "./input";
 import { useEffect, useMemo, useState } from "react";
 import Fuse from "fuse.js"
+import SelectNoteButton from "./SelectNoteButton";
+import DeleteNoteButton from "./DeleteNoteButton";
 
 type Props = {
     notes: Note[];
@@ -28,6 +30,10 @@ function SidebarGroupContent( {notes}: Props ) {
 
   const filteredNotes = searchText ? fuse.search(searchText).map(result => result.item) : localNotes;
 
+  const deleteNoteLocally = (noteId: string) => {
+    setLocalNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId),);
+  };
+
   return (
     <SidebarGroupContentShadCN>
       <div className="relative flex items-center">
@@ -40,6 +46,14 @@ function SidebarGroupContent( {notes}: Props ) {
         />
       </div>
       <SidebarMenu className="mt-4">
+        {filteredNotes.map((note) => (
+          <SidebarMenuItem key={note.id} className="group/item">
+            <SelectNoteButton note={note} />
+            <DeleteNoteButton noteId={note.id} 
+            deleteNoteLocally={deleteNoteLocally}
+             />
+          </SidebarMenuItem>
+        ))}
 
       </SidebarMenu>
     </SidebarGroupContentShadCN>
