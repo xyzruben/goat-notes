@@ -23,7 +23,7 @@ export async function updateSession(request: NextRequest) {
     request,
   })
 
-  console.log("middleware ran! its working properly =)")
+  console.log("WINNER WINNER CHICKEN DINNER!!!")
 
 //   const supabase = createServerClient(
 //     process.env.SUPABASE_URL!,
