@@ -14,6 +14,9 @@ import {
 import { Button } from "./button";
 import { Loader2, Trash2 } from "lucide-react";
 import { useTransition } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter, useSearchParams } from "next/navigation";
+import { deleteNoteAction } from "@/actions/notes";
 
 
 type Props = {
@@ -23,9 +26,38 @@ type Props = {
 
 function DeleteNoteButton({ noteId, deleteNoteLocally }: Props) {
 
+  const router = useRouter();
+  const {toast} = useToast();
+  const noteIdParam = useSearchParams().get("noteId") || ""
+
   const [isPending, startTransition] = useTransition();
 
-  const handleDeleteNote = () => {}
+  const handleDeleteNote = () => {
+    startTransition(async () => {
+      const {errorMessage} = await deleteNoteAction(noteId);
+
+      if (!errorMessage) {
+        toast({
+          title: "Note deleted",
+          description: "You have successfully deleted the Note",
+          variant: "success"
+        })
+        deleteNoteLocally(noteId);
+
+        if (noteId === noteIdParam) {
+          router.replace("/")
+        }
+
+      } else {
+        toast({
+          title: "Error",
+          description: errorMessage,
+          variant: "destructive"
+        })
+      }
+      
+    })
+  }
 
   return (
     <AlertDialog>
