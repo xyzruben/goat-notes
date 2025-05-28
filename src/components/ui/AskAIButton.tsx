@@ -10,11 +10,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Fragment, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Textarea } from "./textarea";
+import { ArrowUpIcon } from "lucide-react";
+import { askAIAboutNotesAction } from "@/actions/notes";
+import '@/app/styles/ai-response.css';
+
 
 type Props = {
     user: User | null; 
@@ -61,9 +63,21 @@ function AskAIButton({user}: Props) {
     }
 
     const handleSubmit = () => {
-      console.log("submit");
+      if (!questionText.trim()) return;
 
-    }
+      const newQuestions = [...questions, questionText];
+      setQuestions(newQuestions);
+      setQuestionText("");
+      setTimeout(scrollToBottom, 100);
+
+      startTransition(async () => {
+        const response = await askAIAboutNotesAction(newQuestions, responses);
+        setResponses(prev => [...prev, response]);
+
+        setTimeout(scrollToBottom, 100);
+      });
+
+    };
 
     const scrollToBottom = () => {
       contentRef.current?.scrollTo({
@@ -134,6 +148,9 @@ function AskAIButton({user}: Props) {
        />
 
     </div>
+    <Button className="ml-auto size-8 rounded-full">
+      <ArrowUpIcon className="text-background" />
+    </Button>
     
 
   </DialogContent>
