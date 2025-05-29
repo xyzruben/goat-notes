@@ -1,58 +1,59 @@
-# GOAT Notes 🐐📝
+# GOAT Notes 🐐🧠
 
-GOAT Notes is a modern, full-stack AI-powered note-taking app built from scratch using industry-standard tools. Designed as a production-ready portfolio project, it showcases authentication, database modeling, and clean UI design — all powered by scalable cloud technologies.
+GOAT Notes is a production ready, full stack note taking app that integrates OpenAI for intelligent note interaction. Built entirely from scratch, it demonstrates secure authentication, dynamic server side actions, scalable database architecture, and a polished UI. All using a modern, professional grade tech stack.
 
-This project reflects my commitment to becoming a professional, with a strong focus on backend logic, authentication, and modern frontend architecture.
+This was not a clone or a copied repo. I personally wrote every line of code, following a professional tutorial only as a guide. I paused frequently to understand the why, debugged every bug myself, and made intentional decisions throughout. GOAT Notes reflects not just what I know but how I think and how I work.
 
----
+## 🚀 Live Demo
 
-## ✨ Features
+*(Add your Vercel link here)*
 
-- 🔐 User authentication with Supabase
-- 📦 PostgreSQL database using Prisma ORM
-- 🧠 OpenAI-powered note interaction (coming soon)
-- 🗂️ Relational schema (`User`, `Note`)
-- 📁 Full CRUD for notes (secure and user-scoped)
-- 💅 Modern UI with Tailwind CSS and shadcn/ui
-- ⚙️ Type-safe development with TypeScript
-- ☁️ Deployed on Vercel (coming soon)
+## 🔑 Key Features
 
----
+✅ Supabase Auth for secure user login/signup  
+🧠 AI powered Q&A about your own notes via OpenAI API  
+🗃️ PostgreSQL schema with Prisma ORM (User + Note)  
+✍️ Real time note creation, editing, and deletion  
+🔒 Server actions with user level access control  
+🎨 Responsive UI using Tailwind CSS + shadcn/ui  
+🔍 Fuzzy search via Fuse.js  
+🧼 Clean code, modular structure, professional commit history
 
-## 🧰 Tech Stack
+## 🧱 Tech Stack
 
-| Tool         | Purpose                            |
-|--------------|------------------------------------|
-| **Next.js 15**   | React framework (App Router)       |
-| **TypeScript**   | Type-safe JavaScript              |
-| **Supabase**     | Auth + PostgreSQL database        |
-| **Prisma ORM**   | Schema modeling + migrations      |
-| **Tailwind CSS** | Utility-first styling             |
-| **shadcn/ui**    | Reusable, modern UI components    |
-| **OpenAI API**   | AI-powered features (in progress) |
-| **pnpm**         | Package manager                   |
-| **Vercel**       | Deployment (coming soon)          |
+| Tool           | Purpose                             |
+|----------------|-------------------------------------|
+| Next.js 15     | App Router architecture (fullstack) |
+| Supabase       | Auth + PostgreSQL backend            |
+| Prisma ORM     | Type safe DB schema and querying     |
+| OpenAI API     | AI note understanding and response   |
+| Tailwind CSS   | Custom styling framework             |
+| shadcn/ui      | Component design system              |
+| Fuse.js        | Fast, client side fuzzy search       |
+| pnpm           | Efficient package management         |
+| Vercel         | Production deployment                |
 
----
+## 🧠 Why I Built This
 
-## 🔒 Authentication
+I built GOAT Notes to prove I could ship a real product, not just follow tutorials. My goal was to understand full stack architecture end-to-end, from auth and data modeling to secure server actions and AI integration. Every part of this app taught me how to think like an engineer: breaking problems into parts, reading docs, building with intention, and debugging under pressure.
 
-Supabase handles secure user signup, login, and session management. Prisma enforces row-level access so users can only read/write their own notes.
+I’m now looking to bring that same discipline, curiosity, and drive to a real world development team.
 
----
+## 📁 Folder Structure Highlights
 
-## 🧠 AI Integration (In Progress)
+/src/app/ – App Router layout and routes  
+/src/actions/ – Server side logic (notes, users, AI)  
+/src/components/ui/ – Reusable shadcn styled components  
+/src/db/ – Prisma schema + migrations  
+/src/openai/ – OpenAI integration logic  
+/middleware.ts – Auth session handling
 
-I'm integrating the OpenAI API to let users interact with their notes using natural language — enabling summarization, extraction, or even rewriting.
+## 🧰 Next Steps
 
----
+I’m actively applying for entry level roles and freelance work. If you’re a hiring engineer, CTO, or founder looking for someone who can deliver, learn fast, and own their work, I’d love to talk.
 
-## 💻 Local Setup
+## 📫 Contact
 
-Clone the repo and install dependencies:
-
-```bash
-git clone git@github.com:xyzruben/goat-notes.git
-cd goat-notes
-pnpm install
-pnpm dev
+GitHub: [xyzruben](https://github.com/xyzruben)  
+Email: xyzruben10@gmail.com  
+LinkedIn: https://linkedin.com/in/yourname
