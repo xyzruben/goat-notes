@@ -6,7 +6,7 @@ This was not a clone or a copied repo. I personally wrote every line of code, fo
 
 ## 🚀 Live Demo
 
-*(Add your Vercel link here)*
+https://goat-notes-taupe.vercel.app
 
 ## 🔑 Key Features
 
