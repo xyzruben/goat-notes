@@ -2,7 +2,7 @@
 const appName = "GOAT Notes";
 
 // 2. This array stores notes and we push new ones later
-let notes = [];
+const notes = [];
 
 // 3. This greeting changes based on time of day
 let greeting = "Good morning";
