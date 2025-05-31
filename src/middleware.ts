@@ -23,11 +23,11 @@ export async function updateSession(request: NextRequest) {
     request,
   })
 
-  console.log("WINNER WINNER CHICKEN DINNER!!!")
+  console.log("SUCCESS!")
 
   const supabase = createServerClient(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_ANON_KEY!,
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         getAll() {
