@@ -4,9 +4,9 @@ GOAT Notes is a production ready, full stack note taking app that integrates Ope
 
 This was not a clone or a copied repo. I personally wrote every line of code, following a professional tutorial only as a guide. I paused frequently to understand the why, debugged every bug myself, and made intentional decisions throughout. GOAT Notes reflects not just what I know but how I think and how I work.
 
-## 🚀 Live Demo
+## 🚀 Live Website
 
-https://goat-notes-taupe.vercel.app
+https://goatnotes.org
 
 ## 🔑 Key Features
 
