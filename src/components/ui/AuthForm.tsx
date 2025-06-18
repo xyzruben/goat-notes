@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { CardContent, CardFooter } from "./card";

@@ -1,5 +1,6 @@
 'use client';
 
+import React from "react";
 import useNote from "@/hooks/useNote";
 import { Note } from "@prisma/client";
 import { useSearchParams } from "next/navigation";

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { User } from "@supabase/supabase-js";
 import { Button } from "./button";
 import { Loader2 } from "lucide-react";

@@ -1,11 +1,13 @@
 "use client";
 
+import React from "react";
 import { Loader2 } from "lucide-react"
 import { Button } from "./button"
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { logOutAction } from "@/actions/users";
+import { supabase } from "../../../__mocks__/supabase";
 
 function LogOutButton() {
 
