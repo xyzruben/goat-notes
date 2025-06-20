@@ -1,3 +1,4 @@
+import React from "react";
 import { getUser } from "@/auth/server";
 import {
     Sidebar,

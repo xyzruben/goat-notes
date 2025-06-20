@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Note } from "@prisma/client";
 import { SidebarGroupContent as SidebarGroupContentShadCN, SidebarMenu, SidebarMenuItem } from "./sidebar";
 import { SearchIcon } from "lucide-react";

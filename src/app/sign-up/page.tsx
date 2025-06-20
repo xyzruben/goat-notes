@@ -1,3 +1,4 @@
+import React from "react";
 import AuthForm from "@/components/ui/AuthForm"
 import { Card, CardHeader, CardTitle } from "@/components/ui/card"
 

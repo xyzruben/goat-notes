@@ -1,6 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import NewNoteButton from "@/components/ui/NewNoteButton";
+import { User } from "@supabase/supabase-js";
 
 const mockPush = jest.fn();
 
@@ -30,7 +31,7 @@ describe("NewNoteButton", () => {
   });
 
   it("creates a new note and redirects with user present", async () => {
-    const fakeUser = { id: "123", email: "test@example.com" } as any;
+    const fakeUser = { id: "123", email: "test@example.com" } as User;
 
     render(<NewNoteButton user={fakeUser} />);
 

@@ -23,7 +23,7 @@ describe("DeleteNoteButton", () => {
     const triggerButton = screen.getAllByRole("button").find((btn) =>
       btn.innerHTML.toLowerCase().includes("svg")
     );
-    triggerButton && fireEvent.click(triggerButton);
+    if (triggerButton) fireEvent.click(triggerButton);
 
     const confirmButtons = await screen.findAllByText("Delete");
     const confirmButton = confirmButtons[confirmButtons.length - 1];

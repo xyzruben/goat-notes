@@ -1,3 +1,4 @@
+import React from "react";
 import { getUser } from "@/auth/server";
 import AskAIButton from "@/components/ui/AskAIButton";
 import NewNoteButton from "@/components/ui/NewNoteButton";

@@ -7,7 +7,6 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { logOutAction } from "@/actions/users";
-import { supabase } from "../../../__mocks__/supabase";
 
 function LogOutButton() {
 

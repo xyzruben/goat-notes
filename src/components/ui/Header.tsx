@@ -1,3 +1,4 @@
+import React from "react";
 import { shadow } from "../../app/styles/utiles"
 import Image from "next/image"
 import Link from "next/link"

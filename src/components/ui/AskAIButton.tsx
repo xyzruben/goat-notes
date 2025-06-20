@@ -26,7 +26,7 @@ type Props = {
 function AskAIButton({user}: Props) {
     const router = useRouter();
 
-    const [isPending, startTransition] = useTransition();
+    const [isPending] = useTransition();
 
 
     const [open, setOpen] = useState(false);
@@ -64,6 +64,7 @@ function AskAIButton({user}: Props) {
     }
 
     const handleSubmit = () => {
+      console.log("handleSubmit called");
       if (!questionText.trim()) return;
 
       const newQuestions = [...questions, questionText];
@@ -71,13 +72,14 @@ function AskAIButton({user}: Props) {
       setQuestionText("");
       setTimeout(scrollToBottom, 100);
 
-      startTransition(async () => {
+      (async () => {
+        console.log("Before askAIAboutNotesAction");
         const response = await askAIAboutNotesAction(newQuestions, responses);
+        console.log("After askAIAboutNotesAction");
         setResponses(prev => [...prev, response]);
-
+        console.log("AI response set:", response);
         setTimeout(scrollToBottom, 100);
-      });
-
+      })();
     };
 
     const scrollToBottom = () => {
@@ -149,7 +151,7 @@ function AskAIButton({user}: Props) {
        />
 
     </div>
-    <Button className="ml-auto size-8 rounded-full">
+    <Button className="ml-auto size-8 rounded-full" onClick={handleSubmit}>
       <ArrowUpIcon className="text-background" />
     </Button>
     
