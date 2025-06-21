@@ -37,10 +37,8 @@ describe("useToast", () => {
 
   it("removes a toast", () => {
     const { result } = renderHook(() => useToast())
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let toastObj: any
     act(() => {
-      toastObj = toast({ title: "Remove me" })
+      toast({ title: "Remove me" })
     })
     act(() => {
       // Directly dispatch REMOVE_TOAST for test
