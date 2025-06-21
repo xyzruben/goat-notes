@@ -1,4 +1,3 @@
-// eslint-disable-next-line jest/no-disabled-tests
 // Skipped: Testing Next.js middleware in Node.js is not feasible due to missing web APIs like Request.
 // This is a known limitation in the Next.js community. See: https://github.com/vercel/next.js/issues/49298
 

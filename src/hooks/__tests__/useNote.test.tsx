@@ -13,7 +13,6 @@ describe("useNote", () => {
     expect(result.current).toHaveProperty("setNoteText")
   })
 
-  // eslint-disable-next-line jest/no-disabled-tests
   it.skip("throws error when used outside NoteProvider", () => {
     // This test is skipped because the error thrown by the hook is being
     // swallowed by React's error boundary and is not catchable in the test
