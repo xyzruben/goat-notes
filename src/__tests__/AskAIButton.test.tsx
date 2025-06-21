@@ -64,15 +64,9 @@ describe("AskAIButton", () => {
       fireEvent.click(sendButton);
     });
 
-    // Debug: print the DOM after clicking send
-    screen.debug();
-
     // Wait for the mocked response to appear
     await waitFor(() => {
       const matches = screen.getAllByText((_content, element) => {
-        if (element) {
-          console.log("Checking element:", element.innerHTML);
-        }
         return !!element && element.innerHTML.includes("This is a mocked AI response.");
       });
       expect(matches.length).toBeGreaterThan(0);
