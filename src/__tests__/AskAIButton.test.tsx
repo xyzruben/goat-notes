@@ -69,7 +69,7 @@ describe("AskAIButton", () => {
 
     // Wait for the mocked response to appear
     await waitFor(() => {
-      const matches = screen.getAllByText((content, element) => {
+      const matches = screen.getAllByText((_content, element) => {
         if (element) {
           console.log("Checking element:", element.innerHTML);
         }

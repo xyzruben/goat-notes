@@ -15,7 +15,6 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
   DropdownMenuGroup,
-  DropdownMenuPortal,
 } from "@/components/ui/dropdown-menu";
 
 // Mock Radix UI primitives

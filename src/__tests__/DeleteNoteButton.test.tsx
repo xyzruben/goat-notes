@@ -1,7 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import DeleteNoteButton from "@/components/ui/DeleteNoteButton";
-import { useRouter, useSearchParams } from "next/navigation";
 
 jest.mock("next/navigation", () => ({
   useRouter: () => ({ refresh: jest.fn() }),

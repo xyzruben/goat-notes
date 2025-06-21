@@ -2,8 +2,6 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import LogOutButton from '@/components/ui/LogOutButton'
 
-jest.mock()
-
 jest.mock('next/navigation', () => ({
     useRouter: () => ({
         push: jest.fn()

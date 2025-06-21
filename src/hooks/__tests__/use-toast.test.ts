@@ -13,33 +13,33 @@ describe("useToast", () => {
 
   it("updates a toast", () => {
     const { result } = renderHook(() => useToast())
-    let toastObj: any
+    let _toastObj: any
     act(() => {
-      toastObj = toast({ title: "Initial" })
+      _toastObj = toast({ title: "Initial" })
     })
     act(() => {
-      toastObj.update({ id: toastObj.id, title: "Updated" })
+      _toastObj.update({ id: _toastObj.id, title: "Updated" })
     })
     expect(result.current.toasts[0].title).toBe("Updated")
   })
 
   it("dismisses a toast", () => {
     const { result } = renderHook(() => useToast())
-    let toastObj: any
+    let _toastObj: any
     act(() => {
-      toastObj = toast({ title: "Dismiss me" })
+      _toastObj = toast({ title: "Dismiss me" })
     })
     act(() => {
-      result.current.dismiss(toastObj.id)
+      result.current.dismiss(_toastObj.id)
     })
     expect(result.current.toasts[0].open).toBe(false)
   })
 
   it("removes a toast", () => {
     const { result } = renderHook(() => useToast())
-    let toastObj: any
+    let _toastObj: any
     act(() => {
-      toastObj = toast({ title: "Remove me" })
+      _toastObj = toast({ title: "Remove me" })
     })
     act(() => {
       // Directly dispatch REMOVE_TOAST for test
