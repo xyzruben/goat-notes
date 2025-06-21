@@ -23,7 +23,8 @@ const customJestConfig = {
   transformIgnorePatterns: [
     "/node_modules/(?!identity-obj-proxy)"
   ],
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  setupFiles: ["<rootDir>/src/jest.polyfill.js"],
+  setupFilesAfterEnv: ["<rootDir>/src/jest.setup.ts"],
   testMatch: [
     "**/__tests__/**/*.(ts|tsx|js)",
     "**/*.(test|spec).(ts|tsx|js)"
