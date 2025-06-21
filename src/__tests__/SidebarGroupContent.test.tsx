@@ -15,21 +15,21 @@ jest.mock('next/navigation', () => ({
   }),
 }));
 
-// Mock notes data
+// Mock notes data with fixed dates for consistent snapshots
 const mockNotes = [
   {
     id: '1',
     text: 'Test note 1',
     authorId: 'user1',
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: new Date('2025-06-20T10:00:00Z'),
+    updatedAt: new Date('2025-06-20T10:00:00Z'),
   },
   {
     id: '2',
     text: 'Test note 2',
     authorId: 'user1',
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: new Date('2025-06-20T10:00:00Z'),
+    updatedAt: new Date('2025-06-20T10:00:00Z'),
   },
 ];
 
