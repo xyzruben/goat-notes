@@ -13,7 +13,7 @@ describe("useToast", () => {
 
   it("updates a toast", () => {
     const { result } = renderHook(() => useToast())
-    let toastObj: any
+    let toastObj: ReturnType<typeof toast>
     act(() => {
       toastObj = toast({ title: "Initial" })
     })
@@ -25,7 +25,7 @@ describe("useToast", () => {
 
   it("dismisses a toast", () => {
     const { result } = renderHook(() => useToast())
-    let toastObj: any
+    let toastObj: ReturnType<typeof toast>
     act(() => {
       toastObj = toast({ title: "Dismiss me" })
     })
