@@ -17,6 +17,7 @@ import { Textarea } from "./textarea";
 import { ArrowUpIcon } from "lucide-react";
 import { askAIAboutNotesAction } from "@/actions/notes";
 import '@/app/styles/ai-response.css';
+import DOMPurify from 'isomorphic-dompurify';
 
 
 type Props = {
@@ -119,10 +120,15 @@ function AskAIButton({user}: Props) {
           </p>
           {
             responses[index] && (
-              <p 
-              className="bot-response text-muted-foreground text-sm" 
-              dangerouslySetInnerHTML={{ __html: responses[index]}}
-            
+              <p
+              className="bot-response text-muted-foreground text-sm"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(responses[index], {
+                  ALLOWED_TAGS: ['p', 'strong', 'em', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br'],
+                  ALLOWED_ATTR: []
+                })
+              }}
+
                />
             )
           }

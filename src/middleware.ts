@@ -65,21 +65,36 @@ export async function updateSession(request: NextRequest) {
     } = await supabase.auth.getUser();
 
     if (user) {
-      const {newestNoteId} = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/fetch-newest-note?userId=${user.id}`,).then((res) => res.json());
+      const cookieHeader = request.headers.get('cookie') || '';
+
+      const fetchNewestResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/fetch-newest-note`,
+        {
+          headers: {
+            'cookie': cookieHeader,
+          }
+        }
+      );
+
+      const {newestNoteId} = await fetchNewestResponse.json();
 
       if (newestNoteId) {
         const url = request.nextUrl.clone();
         url.searchParams.set("noteId", newestNoteId);
         return NextResponse.redirect(url);
       } else {
-        const {noteId} = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/create-new-note?userId=${user.id}`,
+        const createNoteResponse = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/create-new-note`,
           {
             method: "POST",
             headers:{
               "Content-Type":"application/json",
+              'cookie': cookieHeader,
             }
           }
-        ).then((res) => res.json());
+        );
+
+        const {noteId} = await createNoteResponse.json();
         const url = request.nextUrl.clone();
         url.searchParams.set("noteId", noteId);
         return NextResponse.redirect(url);

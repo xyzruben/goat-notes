@@ -1,13 +1,21 @@
 import { prisma } from "@/db/prisma";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import { getUser } from "@/auth/server";
 
-export async function GET(request: NextRequest) {
-    const {searchParams} = new URL(request.url);
-    const userId = searchParams.get("userId") || "";
+export async function GET() {
+    const user = await getUser();
+
+    if (!user) {
+        return NextResponse.json(
+            { error: "Unauthorized" },
+            { status: 401 }
+        );
+    }
+
     const newestNoteId = await prisma.note.findFirst({
         where: {
-            authorId: userId,
-        }, 
+            authorId: user.id,
+        },
         orderBy: {
             createdAt: "desc",
         },
@@ -15,6 +23,7 @@ export async function GET(request: NextRequest) {
             id: true,
         },
     });
+
     return NextResponse.json({
         newestNoteId: newestNoteId?.id,
     });
