@@ -1,5 +1,6 @@
 import { getUser } from "../server";
 import { createServerClient } from "@supabase/ssr";
+import { authLogger } from "@/lib/logger";
 
 // Mock dependencies
 jest.mock("@supabase/ssr", () => ({
@@ -13,11 +14,22 @@ jest.mock("next/headers", () => ({
   })),
 }));
 
+jest.mock("@/lib/logger", () => ({
+  authLogger: {
+    error: jest.fn(),
+    warn: jest.fn(),
+    info: jest.fn(),
+    debug: jest.fn(),
+  },
+}));
+
 const mockUser = { id: "user-123", email: "test@example.com" };
 
 describe("Auth Server", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    // Clear authLogger mock calls
+    (authLogger.error as jest.Mock).mockClear();
   });
 
   describe("getUser", () => {
@@ -54,7 +66,6 @@ describe("Auth Server", () => {
     });
 
     it("should return null and log an error if the auth call fails", async () => {
-      const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation(() => {});
       const mockError = new Error("Auth failed");
       const mockGetUer = jest.fn().mockResolvedValue({
         data: { user: null },
@@ -69,9 +80,10 @@ describe("Auth Server", () => {
 
       const user = await getUser();
       expect(user).toBeNull();
-      expect(consoleErrorSpy).toHaveBeenCalledWith(mockError);
-
-      consoleErrorSpy.mockRestore();
+      expect(authLogger.error).toHaveBeenCalledWith(
+        { error: mockError },
+        'Failed to get user from Supabase'
+      );
     });
   });
 }); 
