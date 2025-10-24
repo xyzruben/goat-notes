@@ -65,7 +65,6 @@ function AskAIButton({user}: Props) {
     }
 
     const handleSubmit = () => {
-      console.log("handleSubmit called");
       if (!questionText.trim()) return;
 
       const newQuestions = [...questions, questionText];
@@ -74,11 +73,8 @@ function AskAIButton({user}: Props) {
       setTimeout(scrollToBottom, 100);
 
       (async () => {
-        console.log("Before askAIAboutNotesAction");
         const response = await askAIAboutNotesAction(newQuestions, responses);
-        console.log("After askAIAboutNotesAction");
         setResponses(prev => [...prev, response]);
-        console.log("AI response set:", response);
         setTimeout(scrollToBottom, 100);
       })();
     };

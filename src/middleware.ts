@@ -1,8 +1,16 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import { generateRequestId } from '@/lib/logger'
 
 export async function middleware(request: NextRequest) {
-  return await updateSession(request)
+  // Generate unique request ID for tracing
+  const requestId = request.headers.get('x-request-id') || generateRequestId();
+  const response = await updateSession(request);
+
+  // Add request ID to response headers for client-side correlation
+  response.headers.set('x-request-id', requestId);
+
+  return response;
 }
 
 export const config = {
@@ -22,8 +30,6 @@ export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   })
-
-  console.log("SUCCESS!")
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,

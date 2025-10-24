@@ -1,0 +1,55 @@
+#!/bin/sh
+
+echo "🔒 Running security checks..."
+
+# Check for .env files in staging
+if git diff --cached --name-only | grep -E "^\.env(\.|$)"; then
+  echo "❌ ERROR: Attempting to commit .env file!"
+  echo "   Files detected:"
+  git diff --cached --name-only | grep -E "^\.env(\.|$)" | sed 's/^/   - /'
+  echo ""
+  echo "   To fix: git reset HEAD <filename>"
+  echo "   Then add the file to .gitignore if needed"
+  exit 1
+fi
+
+# Check for common secret patterns
+SECRETS_FOUND=0
+SECRET_PATTERNS=(
+  "sk-proj-[A-Za-z0-9]{48}"
+  "postgres://[^@]+:[^@]+@"
+  "postgresql://[^@]+:[^@]+@"
+  "Bearer [A-Za-z0-9_\-\.~+/]+=*"
+  "api[_-]?key['\"]?\s*[:=]\s*['\"][^'\"]+['\"]"
+  "password['\"]?\s*[:=]\s*['\"][^'\"]+['\"]"
+  "secret['\"]?\s*[:=]\s*['\"][^'\"]+['\"]"
+)
+
+for pattern in "${SECRET_PATTERNS[@]}"; do
+  if git diff --cached | grep -E "$pattern" > /dev/null; then
+    if [ $SECRETS_FOUND -eq 0 ]; then
+      echo "⚠️  WARNING: Potential secret detected in commit!"
+      echo "   Pattern matches found (review carefully):"
+    fi
+    SECRETS_FOUND=1
+    echo "   - Pattern: ${pattern:0:30}..."
+  fi
+done
+
+if [ $SECRETS_FOUND -eq 1 ]; then
+  echo ""
+  echo "   This might be:"
+  echo "   - A real secret that should NOT be committed"
+  echo "   - A test value or example that's safe to commit"
+  echo "   - A false positive"
+  echo ""
+  read -p "   Have you reviewed and confirmed this is safe? (y/N) " -n 1 -r
+  echo ""
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "❌ Commit aborted. Please review the changes."
+    exit 1
+  fi
+  echo "✅ Continuing with commit (user confirmed)"
+fi
+
+echo "✅ Security checks passed!"
