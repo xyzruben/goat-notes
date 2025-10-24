@@ -62,10 +62,10 @@ describe("Note Server Actions", () => {
   });
 
   describe("updateNoteAction", () => {
-    it("should update an existing note", async () => {
+    it("should update an existing note with authorId check", async () => {
       await updateNoteAction("note-id-123", "Updated text");
       expect(prisma.note.update).toHaveBeenCalledWith({
-        where: { id: "note-id-123" },
+        where: { id: "note-id-123", authorId: mockUser.id },
         data: { text: "Updated text" },
       });
     });

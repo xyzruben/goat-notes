@@ -31,10 +31,17 @@ jobs:
         
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
-      
+
+    - name: Audit dependencies for vulnerabilities
+      run: pnpm audit --audit-level=high --production
+      continue-on-error: false
+
+    - name: Check for outdated packages
+      run: pnpm outdated || true
+
     - name: Generate Prisma client
       run: pnpm dlx prisma generate
-      
+
     - name: Run TypeScript type checking
       run: pnpm run type-check
       
