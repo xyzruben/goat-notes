@@ -16,6 +16,11 @@
   "prisma": {
     "schema": "src/db/schema.prisma"
   },
+  "pnpm": {
+    "overrides": {
+      "form-data": ">=4.0.4"
+    }
+  },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-dialog": "^1.1.13",
