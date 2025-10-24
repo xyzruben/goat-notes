@@ -2,7 +2,7 @@ import { TextEncoder, TextDecoder } from 'util';
 import '@testing-library/jest-dom';
 import ResizeObserver from 'resize-observer-polyfill';
 
-global.TextEncoder = TextEncoder;
+global.TextEncoder = TextEncoder as any;
 global.TextDecoder = TextDecoder as any;
 global.ResizeObserver = ResizeObserver;
 
